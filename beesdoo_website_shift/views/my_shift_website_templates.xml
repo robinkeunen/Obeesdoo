@@ -86,12 +86,12 @@
 
     <p t-if="status.holiday_start_time and status.holiday_start_time > status.today or status.status == 'holiday'">
       <label>Begin of Holiday:</label>
-      <t t-esc="time.strftime('%A %d %B %Y', time.strptime(status.holiday_start_time, '%Y-%m-%d'))"/>
+      <span t-field="status.holiday_start_time" t-field-options='{"format": "EEEE d MMMM y"}'/>
     </p>
 
     <p t-if="status.holiday_end_time and status.holiday_end_time > status.today or status.status == 'holiday'">
       <label>End of Holiday:</label>
-      <t t-esc="time.strftime('%A %d %B %Y', time.strptime(status.holiday_end_time, '%Y-%m-%d'))"/>
+      <span t-field="status.holiday_end_time" t-field-options='{"format": "EEEE d MMMM y"}'/>
     </p>
 
   </template>
@@ -135,7 +135,7 @@
       <div class="panel panel-default">
         <div class="panel-heading clearfix">
           <div class="panel-title">
-            <t t-esc="time.strftime('%A %d %B %Y', time.strptime(shift.start_time, '%Y-%m-%d %H:%M:%S'))"/>
+            <span t-field="shift.start_time" t-field-options='{"format": "EEEE d MMMM y"}'/>
             <span t-field="shift.start_time" t-field-options='{"format": "HH:mm"}'/> -
             <span t-field="shift.end_time" t-field-options='{"format": "HH:mm"}'/>
           </div>
@@ -167,10 +167,10 @@
         <t t-foreach="subscribed_shifts" t-as="shift">
           <tr>
             <td>
-              <t t-esc="time.strftime('%A', time.strptime(shift.start_time, '%Y-%m-%d %H:%M:%S'))"/>
+              <span t-field="shift.start_time" t-field-options='{"format": "EEEE"}'/>
             </td>
             <td>
-              <t t-esc="time.strftime('%d %B %Y', time.strptime(shift.start_time, '%Y-%m-%d %H:%M:%S'))"/>
+              <span t-field="shift.start_time" t-field-options='{"format": "d MMMM y"}'/>
             </td>
             <td>
               <span t-field="shift.start_time" t-field-options='{"format": "HH:mm"}'/> -
@@ -261,7 +261,7 @@
       <div class="panel panel-default">
         <div class="panel-heading clearfix">
           <div class="panel-title">
-            <t t-esc="time.strftime('%A %d %B %Y', time.strptime(shift.start_time, '%Y-%m-%d %H:%M:%S'))"/>
+            <span t-field="shift.start_time" t-field-options='{"format": "EEEE d MMMM y"}'/>
             <span t-field="shift.start_time" t-field-options='{"format": "HH:mm"}'/> -
             <span t-field="shift.end_time" t-field-options='{"format": "HH:mm"}'/>
           </div>
@@ -286,10 +286,10 @@
         <t t-foreach="past_shifts" t-as="shift">
           <tr>
             <td>
-              <t t-esc="time.strftime('%A', time.strptime(shift.start_time, '%Y-%m-%d %H:%M:%S'))"/>
+              <span t-field="shift.start_time" t-field-options='{"format": "EEEE"}'/>
             </td>
             <td>
-              <t t-esc="time.strftime('%d %B %Y', time.strptime(shift.start_time, '%Y-%m-%d %H:%M:%S'))"/>
+              <span t-field="shift.start_time" t-field-options='{"format": "d MMMM y"}'/>
             </td>
             <td>
               <span t-field="shift.start_time" t-field-options='{"format": "HH:mm"}'/> -
@@ -336,7 +336,7 @@
       <div t-att-class="'panel %s' % highlight_class">
         <div class="panel-heading clearfix">
           <div class="panel-title pull-left">
-            <t t-esc="time.strftime('%A %d %B %Y', time.strptime(shift.start_time, '%Y-%m-%d %H:%M:%S'))"/>
+            <span t-field="shift.start_time" t-field-options='{"format": "EEEE d MMMM y"}'/>
             <span t-field="shift.start_time" t-field-options='{"format": "HH:mm"}'/> -
             <span t-field="shift.end_time" t-field-options='{"format": "HH:mm"}'/>
           </div>
@@ -381,10 +381,10 @@
           <t t-set="is_subscribed" t-value="shift_count_subscribed[2]" />
           <tr t-attf-class="{{ 'warning' if count >= highlight_rule else '' }}">
             <td>
-              <t t-esc="time.strftime('%A', time.strptime(shift.start_time, '%Y-%m-%d %H:%M:%S'))"/>
+              <span t-field="shift.start_time" t-field-options='{"format": "EEEE"}'/>
             </td>
             <td>
-              <t t-esc="time.strftime('%d %B %Y', time.strptime(shift.start_time, '%Y-%m-%d %H:%M:%S'))"/>
+              <span t-field="shift.start_time" t-field-options='{"format": "d MMMM y"}'/>
             </td>
             <td>
               <span t-field="shift.start_time" t-field-options='{"format": "HH:mm"}'/> -
@@ -434,8 +434,8 @@
               </h4>
             </div>
             <div class="modal-body">
-              <t t-esc="time.strftime('%A', time.strptime(shift.start_time, '%Y-%m-%d %H:%M:%S'))"/>
-              <t t-esc="time.strftime('%d %B %Y', time.strptime(shift.start_time, '%Y-%m-%d %H:%M:%S'))"/>
+              <span t-field="shift.start_time" t-field-options='{"format": "EEEE"}'/>
+              <span t-field="shift.start_time" t-field-options='{"format": "d MMMM y"}'/>
               <span t-field="shift.start_time" t-field-options='{"format": "HH:mm"}'/> -
               <span t-field="shift.end_time" t-field-options='{"format": "HH:mm"}'/><br/>
               <t t-esc="shift.task_type_id.name"/><br/>
@@ -673,12 +673,12 @@
 
               <p t-if="status.alert_start_time">
                 <label>In Alert Since:</label>
-                <t t-esc="time.strftime('%A %d %B %Y', time.strptime(status.alert_start_time, '%Y-%m-%d'))"/>
+                <span t-field="status.alert_start_time" t-field-options='{"format": "EEEE d MMMM y"}'/>
               </p>
 
               <p t-if="status.extension_start_time">
                 <label>In Extension Since:</label>
-                <t t-esc="time.strftime('%A %d %B %Y', time.strptime(status.extension_start_time, '%Y-%m-%d'))"/>
+                <span t-field="status.extension_start_time" t-field-options='{"format": "EEEE d MMMM y"}'/>
               </p>
 
               <div class="oe_structure"/>
@@ -738,12 +738,12 @@
 
               <p t-if="status.future_alert_date">
                 <label>Future Date of Alert:</label>
-                <t t-esc="time.strftime('%A %d %B %Y', time.strptime(status.future_alert_date, '%Y-%m-%d'))"/>
+                <span t-field="status.future_alert_date" t-field-options='{"format": "EEEE d MMMM y"}'/>
               </p>
 
               <p t-if="status.irregular_absence_date">
                 <label>Last Absence Date:</label>
-                <t t-esc="time.strftime('%A %d %B %Y', time.strptime(status.irregular_absence_date, '%Y-%m-%d'))"/>
+                <span t-field="status.irregular_absence_date" t-field-options='{"format": "EEEE d MMMM y"}'/>
               </p>
 
               <p t-if="status.irregular_absence_counter">
