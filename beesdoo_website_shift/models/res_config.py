@@ -7,6 +7,7 @@ from ast import literal_eval
 from openerp import fields, models, api
 
 PARAMS = [
+    ('date_format', 'beesdoo_website_shift.date_format'),
     ('irregular_shift_limit', 'beesdoo_website_shift.irregular_shift_limit'),
     ('highlight_rule', 'beesdoo_website_shift.highlight_rule'),
     ('hide_rule', 'beesdoo_website_shift.hide_rule'),
@@ -21,6 +22,11 @@ class WebsiteShiftConfigSettings(models.TransientModel):
 
     _name = 'beesdoo.website.shift.config.settings'
     _inherit = 'res.config.settings'
+
+    # Date format
+    date_format = fields.Char(
+        help="Date format, leave empty to use default parameters from Odoo"
+    )
 
     # Irregular worker settings
     irregular_shift_limit = fields.Integer(
